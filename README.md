@@ -1,7 +1,7 @@
-# Python FastAPI Learning Project
+# Python FastAPI Enterprise Microservices
 
 ## Overview
-This project is a hands-on exploration of Python backend development using FastAPI, designed as a learning journey from a .NET background (5 years experience with Azure Functions, Visual Studio, and EF Core).
+This is an enterprise-grade microservices project built with Python and FastAPI, designed to demonstrate production-ready patterns and best practices. The project serves as a learning platform for transitioning from .NET (5 years experience with Azure Functions, Visual Studio, and EF Core) to Python backend development.
 
 ## Learning Objectives
 - Master FastAPI for building modern Python backend services
@@ -32,17 +32,19 @@ This project is a hands-on exploration of Python backend development using FastA
 - **Alembic** - Database migration tool
 - **PostgreSQL/MySQL/SQLite** - Database options
 
-### Additional Libraries (To Be Added)
+### Additional Libraries
 - **Pydantic** - Data validation using Python type hints
+- **pydantic-settings** - Application configuration management
 - **python-dotenv** - Environment variable management
 - **pytest** - Testing framework
 - **httpx** - Async HTTP client for testing
 
 ## Project Goals
-- Build a microservices-based application
-- Implement proper database migrations
-- Apply best practices from .NET development to Python
-- Explore Python-specific patterns and idioms
+- Build enterprise-grade microservices architecture
+- Implement proper database migrations and data management
+- Apply industry best practices and design patterns
+- Create production-ready, scalable, and maintainable code
+- Follow clean architecture and SOLID principles
 
 ## Getting Started
 _(Instructions to be added as project develops)_
