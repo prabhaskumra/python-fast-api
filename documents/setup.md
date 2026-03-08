@@ -81,9 +81,37 @@ REDIS_PASSWORD=redispassword
 
 ## Running the Project
 
-### Option 1: Docker Compose (Recommended)
+### Option 1: VS Code Debug (Recommended for Development) 🎯
+**This is like running with F5 in Visual Studio!**
+
+1. **Start dependencies** (PostgreSQL + Redis):
+   ```bash
+   docker-compose up postgres redis
+   ```
+
+2. **In VS Code**:
+   - Press `F5` or click Run & Debug icon
+   - Select service from dropdown:
+     - "Code Analysis Service" - Run service 1
+     - "AI Assistant Service" - Run service 2
+     - "All Services (Compound)" - Run both at once
+   - Set breakpoints, inspect variables, step through code
+
+3. **Access APIs**:
+   - Code Analysis: http://localhost:8001/docs
+   - AI Assistant: http://localhost:8002/docs
+
+**Benefits**:
+- ✅ Full debugging support (breakpoints, watch, call stack)
+- ✅ Auto-reload on code changes
+- ✅ Environment variables loaded from `.env`
+- ✅ Just like .NET debugging experience!
+
+---
+
+### Option 2: Docker Compose (Full Stack)
 ```bash
-# Start all services
+# Start all services (APIs + Databases)
 docker-compose up
 
 # Start in detached mode
@@ -99,7 +127,9 @@ docker-compose down
 docker-compose up --build
 ```
 
-### Option 2: Run Services Individually (for development)
+---
+
+### Option 3: Command Line (Manual)
 ```bash
 # Terminal 1: Start PostgreSQL + Redis
 docker-compose up postgres redis
@@ -174,6 +204,9 @@ Repeat for `services/ai-assistant/`
 ```
 
 ### Launch Configuration (.vscode/launch.json)
+
+**This allows you to run/debug each service from VS Code (like .NET launch settings)**
+
 ```json
 {
   "version": "0.2.0",
@@ -183,22 +216,63 @@ Repeat for `services/ai-assistant/`
       "type": "python",
       "request": "launch",
       "module": "uvicorn",
-      "args": ["app.main:app", "--reload", "--port", "8001"],
+      "args": [
+        "app.main:app",
+        "--reload",
+        "--host", "0.0.0.0",
+        "--port", "8001"
+      ],
       "cwd": "${workspaceFolder}/services/code-analysis",
-      "env": {"PYTHONPATH": "${workspaceFolder}/services/code-analysis"}
+      "env": {
+        "PYTHONPATH": "${workspaceFolder}/services/code-analysis"
+      },
+      "envFile": "${workspaceFolder}/services/code-analysis/.env",
+      "console": "integratedTerminal",
+      "justMyCode": true
     },
     {
       "name": "AI Assistant Service",
       "type": "python",
       "request": "launch",
       "module": "uvicorn",
-      "args": ["app.main:app", "--reload", "--port", "8002"],
+      "args": [
+        "app.main:app",
+        "--reload",
+        "--host", "0.0.0.0",
+        "--port", "8002"
+      ],
       "cwd": "${workspaceFolder}/services/ai-assistant",
-      "env": {"PYTHONPATH": "${workspaceFolder}/services/ai-assistant"}
+      "env": {
+        "PYTHONPATH": "${workspaceFolder}/services/ai-assistant"
+      },
+      "envFile": "${workspaceFolder}/services/ai-assistant/.env",
+      "console": "integratedTerminal",
+      "justMyCode": true
+    },
+    {
+      "name": "All Services (Compound)",
+      "type": "compound",
+      "configurations": [
+        "Code Analysis Service",
+        "AI Assistant Service"
+      ],
+      "presentation": {
+        "hidden": false,
+        "group": "microservices",
+        "order": 1
+      }
     }
   ]
 }
 ```
+
+**Usage**:
+- Press `F5` or go to Run & Debug panel
+- Select service from dropdown (Code Analysis, AI Assistant, or All Services)
+- Set breakpoints in your code
+- Debug just like .NET in Visual Studio!
+
+**Compound Configuration**: Select "All Services" to run both microservices at once (like running multiple projects in Visual Studio)
 
 ---
 

@@ -88,8 +88,12 @@
 **Why**:
 - Excellent Python extension
 - Multi-root workspace support for microservices
-- Debugging support for multiple services
+- **Full debugging support (F5, breakpoints) like Visual Studio**
+- Launch configurations for running multiple services
+- Integrated terminal, Git, Docker support
 - Familiar from .NET development
+
+**Key Feature**: `.vscode/launch.json` provides same experience as .NET launch settings - press F5 to run/debug any service!
 
 ---
 
