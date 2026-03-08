@@ -1,0 +1,12 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(curl -s http://localhost:8001/)",
+      "Bash(lsof -ti:8001)",
+      "Bash(xargs kill -9)",
+      "Bash(lsof -ti:8002)"
+    ],
+    "deny": [],
+    "ask": []
+  }
+}

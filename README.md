@@ -47,7 +47,87 @@ This is an enterprise-grade microservices project built with Python and FastAPI,
 - Follow clean architecture and SOLID principles
 
 ## Getting Started
-_(Instructions to be added as project develops)_
+
+**Quick Start**: See [QUICKSTART.md](QUICKSTART.md) for immediate setup instructions.
+
+**Full Setup Guide**: See [documents/setup.md](documents/setup.md) for detailed environment setup.
+
+### Running the Services
+
+```bash
+# Start databases
+docker-compose up -d postgres redis
+
+# In VS Code: Press F5 → Select "All Services (Compound)"
+# Or run manually:
+# Terminal 1: cd services/code-analysis && uvicorn app.main:app --reload --port 8001
+# Terminal 2: cd services/ai-assistant && uvicorn app.main:app --reload --port 8002
+```
+
+**Access APIs**:
+- Code Analysis: http://localhost:8001/docs
+- AI Assistant: http://localhost:8002/docs
 
 ## Project Structure
-_(To be defined based on chosen project idea)_
+
+```
+python-fast-api/
+├── services/
+│   ├── code-analysis/              # Service 1: Code Analysis
+│   │   ├── app/
+│   │   │   ├── main.py            # FastAPI application
+│   │   │   ├── models/            # SQLAlchemy models
+│   │   │   ├── routes/            # API routes
+│   │   │   ├── services/          # Business logic
+│   │   │   └── db/                # Database config
+│   │   ├── tests/
+│   │   ├── requirements.txt
+│   │   ├── Dockerfile
+│   │   └── .env
+│   │
+│   └── ai-assistant/              # Service 2: AI Code Assistant
+│       ├── app/
+│       │   ├── main.py            # FastAPI application
+│       │   ├── models/            # SQLAlchemy models
+│       │   ├── routes/            # API routes
+│       │   ├── services/          # Business logic
+│       │   └── db/                # Database config
+│       ├── tests/
+│       ├── requirements.txt
+│       ├── Dockerfile
+│       └── .env
+│
+├── documents/                      # Project documentation
+│   ├── project-goal.md            # Project objectives
+│   ├── architecture.md            # Architecture decisions
+│   ├── setup.md                   # Development setup
+│   ├── decisions.md               # Decision log
+│   └── progress.md                # Progress tracker
+│
+├── .vscode/
+│   ├── launch.json                # VS Code debug configs
+│   └── settings.json              # Python settings
+│
+├── .claude/                       # Claude Code agent tools
+│   ├── commands/                  # Slash commands
+│   └── hooks/                     # Git hooks
+│
+├── venv/                          # Python virtual environment
+├── docker-compose.yml             # Docker services config
+├── .env                           # Environment variables
+├── .gitignore
+├── README.md                      # This file
+└── QUICKSTART.md                  # Quick start guide
+```
+
+## Current Status
+
+**Phase 1 (MVP)**: ✅ Complete
+- Both services running with basic endpoints
+- Docker Compose configured for PostgreSQL + Redis
+- VS Code debugging configured
+- Interactive API documentation at `/docs`
+
+**Next**: Phase 2 - Database integration, real code analysis, LLM integration
+
+See [documents/progress.md](documents/progress.md) for detailed progress.
